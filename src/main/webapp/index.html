@@ -53,6 +53,7 @@
 
       <ul>
         <li>User-centric development</li>
+        <li>Incredibly simple AJAX support</li>
         <li>Best-in-class real-time capabilities</li>
         <li>Effortless security</li>
       </ul>
@@ -61,22 +62,47 @@
     </section>
 
     <section id="user-centric">
-    <!-- View-first development -->
-    <!-- -->
+      <h3>Let your users guide your development by building your views first and separating the backend completely</h3>
+
+      <ul>
+        <li>Build your views first after a round of user-centric design: Frontend developers can build views without any backend knowledge</li>
+        <li>Treat your views as mockups when needed: all views can be valid HTML5 documents</li>
+        <li>Transform your views with real data: use CSS-like syntax to transform HTML mockups into real documents</li>
+      </ul>    </section>
+
+    <section id="ajax">
+      <h3>AJAX support so simple it'll make your head spin</h3>
+
+      <ul>
+        <li>Turn regular forms into AJAX forms with two changes</li>
+        <li>Load slow parts of a page after the page is sent to the user with a single change</li>
+        <li>Easily all back to the server on any event</li>
+      </ul>
     </section>
 
     <section id="real-time">
-    <!-- Actor model -->
-    <!-- Multiple components per page -->
-    <!-- Best-in-class connection management -->
-    <!-- High concurrency (continuations) -->
-    <!-- Asterisk regarding WebSockets -->
+      <h3>Reason about real-time applications without worrying about threading complexities</h3>
+
+      <ul>
+        <li>Send real-time updates as messages to actors</li>
+        <li>Put any number of real-time components on any page</li>
+        <li>Advanced connection management handles browser connection limits transparently</li>
+        <li>Uses server-side continuations to support thousands of connections without tying up threads unnecessarily</li>
+      </ul>
     </section>
 
     <section id="security">
-    <!-- Type-safe menus -->
-    <!-- Everything is inaccessible by default -->
-    <!-- HTML is always escaped -->
+      <h3>Let Lift take care of some of the most common security problems on the web for you</h3>
+
+      <ul>
+        <li>Type-safe URLs let you fail URLs before broken data reaches your application</li>
+        <li>Trivial access control based on simple functions</li>
+        <li>No views or files are accessible unless you explicitly expose them</li>
+        <li>HTML is always escaped before reaching the user, so you never have to worry about script tag injection in Lift views<sup>*</sup></li>
+        <li>Opaque identifiers for form fields means resistance to replay and <abbr title="Cross-Site Request Forgery">CSRF</abbr> attacks</li>
+      </ul>
+
+      <p><sup>*</sup>&mdash;Note that scripts can also be injected via attributes. Always avoid binding user-specified data to event handling attributes.</p>
     </section>
 
     <section id="get-started">
