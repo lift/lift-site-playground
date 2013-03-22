@@ -59,6 +59,89 @@
       </ul>
 
       <a href="#get-started">Get Started</a>
+
+      <pre>
+        case class Article(id: Long, title: String, body: String)
+        val menu =
+          Menu.param[Article](
+            "article", LinkText(_.title),
+            parser = (articleId) => Article.findById(articleId),
+            encoder = (article) => article.id
+          ) / "articles" / "article" >>
+            If(loggedIn_? _, failMsg = S.redirectTo("/"))
+
+        val article: Box[Article] = menu.currentValue
+      </pre>
+      <!--pre>
+        <div data-lift="lazy">
+          Results from Google search:
+
+          <ul data-lift="GoogleSearch.results">
+            <li>
+              <h5>Result Title:</h5>
+              <p>Result content...</p>
+            </li>
+          </ul>
+        </div>
+      </pre-->
+      <!--pre>
+        <form data-lift="User.signupForm">
+          <ul>
+            <li>
+              <label for="username">Username:</label>
+              <input id="username">
+            <li>
+              <label for="password">Password:</label>
+              <input id="password">
+            <li>
+              <label for="email">Email:</label>
+              <input id="email">
+            <li class="submit">
+              <button type="submit">Sign Up</button>
+          </ul>
+        </form>
+      </pre-->
+      <!--pre>
+        var username = ""
+        var password = ""
+        var email = ""
+
+        makeFormsAjax andThen
+        "#username"   #> text(username, username = _) &
+        "#password"   #> text(password, password = _) &
+        "#email"      #> text(email, email = _) &
+        "type=submit" #> ajaxOnSubmit({ s: String =>
+          User(username, password, email).save
+
+          RedirectTo("/home")
+        })
+      </pre-->
+      <!--pre>
+        <button id="refresh-data">Refresh Data</button>
+
+        "#refresh-data" #> ajaxInvoke({
+          val data: List[Data] = Data.getLatest
+
+          Call("latestData", compact(render(data)) /* JSON */)
+        })
+      </pre-->
+      <!--pre>
+        object UserApi extends RestHelper {
+          object UserById {
+            def unapply(id: String): Option[User] = {
+              User.findById(id)
+            }
+          }
+
+          serve {
+            case "users" :: UserById(user) :: Nil JsonGet _ =>
+              decompose(user)
+            case "users" :: _ JsonGet _ =>
+              "error"   -> "User not found." ~
+              "details" -> "The user id you requested does not exist."
+          }
+        }
+      </pre-->
     </section>
 
     <section id="user-centric">
