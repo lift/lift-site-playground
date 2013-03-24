@@ -12,17 +12,29 @@
         padding: 0;
       }
 
-      html {
-        background: url('/images/background.png') repeat;
-      }
-
       body {
         width: 800px;
         margin: 0 auto;
 
         background: white;
 
-        padding: 1px 20px 50px;
+        padding: 0 20px 50px;
+
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+
+      header:before {
+        content: '';
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 56px;
+
+        background: #1A336A;
+      }
+      header > * {
+        position: relative;
       }
 
       h1 {
@@ -30,9 +42,66 @@
         width: 143px;
         height: 56px;
 
+        margin: 0;
+
         background: url('/images/logo.png');
       }
+      nav {
+        float: right;
+
+        height: 56px;
+        margin-top: -56px;
+      }
+      nav > ul {
+        list-style-type: none;
+        margin: 0
+      }
+      nav > ul > li, nav a {
+        float: left;
+      }
+      nav a {
+        font-family: ratio;
+        font-weight: 300;
+        text-transform: uppercase;
+        height: 56px;
+        line-height: 52px;
+
+        color: white;
+        text-decoration: none;
+
+        padding: 0 20px;
+        margin-left: 1px;
+
+        background: #4661B0;
+
+        border: 2px #4661B0;
+      }
+      nav a:hover {
+        background: #6D83C5;
+      }
+      nav a.current {
+        background: white;
+        color: black;
+        font-weight: 400;
+      }
+
+      pre {
+        font-family: inconsolata, Monaco, 'Source Code Pro', 'Droid Sans Mono', 'Ubuntu Mono', Consolas,
+                     'Liberation Mono', Menlo, 'Bitstream Vera Sans Mono', 'Courier Std', 'Courier New', Courier,
+                     monospace;
+      }
+
+      h2 {
+        font-family: ratio, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 300;
+        font-size: 42px;
+        text-rendering: optimizelegibility;
+        text-align: center;
+      }
     </style>
+
+    <script type="text/javascript" src="//use.typekit.net/lub6neu.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
 
   <body>
@@ -49,7 +118,7 @@
     </header>
 
     <section id="introduction">
-      <h2>The innovative, secure Scala web framework</h2>
+      <h2 class="tk-myriad-pro">The secure, efficient Scala web framework</h2>
 
       <ul>
         <li><a href="#user-centric">User-centric development</li>
