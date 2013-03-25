@@ -4,6 +4,8 @@
     <link src="/stylesheets/home.css" rel="stylesheet">
     <title>Lift: The innovative, secure Scala web framework</title>
 
+    <link href='http://fonts.googleapis.com/css?family=Oxygen:300' rel='stylesheet' type='text/css'>
+
     <style>
       html, body {
         min-height: 100%;
@@ -20,7 +22,7 @@
 
         padding: 0 20px 50px;
 
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-family: Oxygen, 'Helvetica Neue', Helvetica, Arial, sans-serif;
       }
 
       header:before {
@@ -39,27 +41,36 @@
 
       h1 {
         text-indent: -1000px;
+        margin: 0;
+      }
+      header > h1 {
         width: 143px;
         height: 56px;
 
-        margin: 0;
-
         background: url('/images/logo.png');
       }
-      nav {
+      #introduction > h1 {
+        height: 113px;
+
+        margin-top: 100px;
+        margin-bottom: 100px;
+        background: url('/images/logo-large.png') 50% no-repeat;
+      }
+
+      #main-nav {
         float: right;
 
         height: 56px;
         margin-top: -56px;
       }
-      nav > ul {
+      #main-nav > ul {
         list-style-type: none;
         margin: 0
       }
-      nav > ul > li, nav a {
+      #main-nav > ul > li, #main-nav a {
         float: left;
       }
-      nav a {
+      #main-nav a {
         font-family: ratio;
         font-weight: 300;
         text-transform: uppercase;
@@ -76,30 +87,116 @@
 
         border: 2px #4661B0;
       }
-      nav a:hover {
+      #main-nav a:hover {
         background: #6D83C5;
       }
-      nav a.current {
+      #main-nav a.current {
         background: white;
         color: black;
         font-weight: 400;
       }
 
-      pre {
+      pre, code {
         font-family: inconsolata, Monaco, 'Source Code Pro', 'Droid Sans Mono', 'Ubuntu Mono', Consolas,
                      'Liberation Mono', Menlo, 'Bitstream Vera Sans Mono', 'Courier Std', 'Courier New', Courier,
                      monospace;
       }
 
-      h2 {
+      #teasers {
+        overflow: hidden;
+        height: 660px;
+
+        margin-bottom: -15px;
+      }
+      #teasers > ul {
+        margin: 75px 0 0;
+        padding: 0 80px;
+
+        list-style-type: none;
+      }
+      #teasers h3 {
         font-family: ratio, 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-weight: 300;
         font-size: 42px;
         text-rendering: optimizelegibility;
         text-align: center;
+
+        margin: -15px 0 0;
+        padding: 47px 0;
+      }
+      #teasers h3 > a {
+        text-decoration: none;
+        color: black;
+      }
+      #teasers li > a {
+        display: none;
+      }
+      #teasers pre {
+        font-size: 14px;
+
+        background: url('/images/macbook-pro-vico.png');
+        border-top-left-radius: 25px; /* match mbp corners */
+        border-top-right-radius: 25px;
+        box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
+
+        box-sizing: border-box;
+
+        width: 720px;
+        height: 450px;
+
+        margin: 0 40px;
+        padding: 36px 42px 0;
+      }
+
+      #teasers {
+        position: relative;
+      }
+
+      #teasers li {
+        -webkit-transition: 300ms all;
+
+        position: absolute;
+
+        width: 800px;
+        left: -780px;
+      }
+      #teasers li.current {
+        left: 0;
+      }
+      #teasers li.current > h3 {
+        background: 
+          -webkit-linear-gradient(0deg, white, rgba(255,255,255,0) 40px, rgba(255,255,255,0) 760px, white),
+          -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.1) 8%, white 8%, white 92%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0));
+      }
+      #teasers li.current ~ li {
+        left: 780px;
+      }
+
+      #teasers li.ajax > h3, #teasers li.user-centric > h3 {
+        -webkit-transition: 300ms all;
+        position: absolute;
+        width: 800px;
+      }
+      #teasers li.ajax.current > h3, #teasers li.user-centric.current > h3 {
+        display: none;
+      }
+      #teasers li.ajax + li.ajax > h3, #teasers li.user-centric + li.user-centric > h3 {
+        display: block;
+      }
+      #teasers li.ajax.current + li.ajax > h3, #teasers li.ajax + li.ajax.current > pre,
+          #teasers li.user-centric.current + li.user-centric > h3, #teasers li.user-centric + li.user-centric.current > pre {
+        left: -780px;
+      }
+
+      #features {
+        padding-top: 20px;
+      }
+      #features ul {
+        margin: 0;
       }
     </style>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="//use.typekit.net/lub6neu.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
@@ -108,7 +205,7 @@
     <header>
       <h1>Lift</h1>
 
-      <nav>
+      <nav id="main-nav">
         <ul>
           <li><a href="/download">Download</a></li>
           <li><a href="/documentation">Learn</a></li>
@@ -118,99 +215,160 @@
     </header>
 
     <section id="introduction">
-      <h2 class="tk-myriad-pro">The secure, efficient Scala web framework</h2>
+      <nav id="teasers">
+        <ul>
+          <li class="current security">
+            <pre>
+case class Article(id: Long, title: String, body: String)
+val menu =
+  Menu.param[Article](
+    "article", LinkText(_.title),
+    parser = (articleId) => Article.findById(articleId),
+    encoder = (article) => article.id
+  ) / "articles" / "article" >>
+    If(loggedIn_? _, failMsg = S.redirectTo("/"))
 
-      <ul>
-        <li><a href="#user-centric">User-centric development</li>
-        <li><a href="#ajax">Incredibly simple AJAX support</li>
-        <li><a href="#real-time">Best-in-class real-time capabilities</li>
-        <li><a href="#security">Effortless security</li>
-      </ul>
+val article: Box[Article] = menu.currentValue
+            </pre>
 
-      <a href="#get-started">Get Started</a>
+            <h3><a href="#security">The effortlessly secure Scala web framework</a></h3>
 
-      <pre>
-        case class Article(id: Long, title: String, body: String)
-        val menu =
-          Menu.param[Article](
-            "article", LinkText(_.title),
-            parser = (articleId) => Article.findById(articleId),
-            encoder = (article) => article.id
-          ) / "articles" / "article" >>
-            If(loggedIn_? _, failMsg = S.redirectTo("/"))
+            <a href="#security">Learn more about security in Lift</a>
+          </li>
 
-        val article: Box[Article] = menu.currentValue
-      </pre>
-      <!--pre>
-        <div data-lift="lazy">
-          Results from Google search:
+          <li class="user-centric">
+            <pre>
+&lt;div data-lift="lazy"&gt;
+  Results from Google search:
 
-          <ul data-lift="GoogleSearch.results">
-            <li>
-              <h5>Result Title:</h5>
-              <p>Result content...</p>
-            </li>
-          </ul>
-        </div>
-      </pre-->
-      <!--pre>
-        <form data-lift="User.signupForm">
-          <ul>
-            <li>
-              <label for="username">Username:</label>
-              <input id="username">
-            <li>
-              <label for="password">Password:</label>
-              <input id="password">
-            <li>
-              <label for="email">Email:</label>
-              <input id="email">
-            <li class="submit">
-              <button type="submit">Sign Up</button>
-          </ul>
-        </form>
-      </pre-->
-      <!--pre>
-        var username = ""
-        var password = ""
-        var email = ""
+  &lt;ul data-lift="GoogleSearch.results"&gt;
+    &lt;li&gt;
+      &lt;h5&gt;Result Title:&lt;/h5&gt;
+      &lt;p&gt;Result content...&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+            </pre>
 
-        makeFormsAjax andThen
-        "#username"   #> text(username, username = _) &
-        "#password"   #> text(password, password = _) &
-        "#email"      #> text(email, email = _) &
-        "type=submit" #> ajaxOnSubmit({ s: String =>
-          User(username, password, email).save
+            <h3><a href="#user-centric">The user-centric Scala web framework</a></h3>
 
-          RedirectTo("/home")
-        })
-      </pre-->
-      <!--pre>
-        <button id="refresh-data">Refresh Data</button>
+            <a href="#user-centric">Read more about view-first development in Lift</a>
+          </li>
+          <li class="user-centric">
+            <pre>
+&lt;form data-lift="User.signupForm"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;label for="username"&gt;Username:&lt;/label&gt;
+      &lt;input id="username"&gt;
+    &lt;li&gt;
+      &lt;label for="password"&gt;Password:&lt;/label&gt;
+      &lt;input id="password"&gt;
+    &lt;li&gt;
+      &lt;label for="email"&gt;Email:&lt;/label&gt;
+      &lt;input id="email"&gt;
+    &lt;li class="submit"&gt;
+      &lt;button type="submit"&gt;Sign Up&lt;/button&gt;
+  &lt;/ul&gt;
+&lt;/form&gt;
+            </pre>
 
-        "#refresh-data" #> ajaxInvoke({
-          val data: List[Data] = Data.getLatest
+            <h3><a href="#user-centric">The user-centric Scala web framework</a></h3>
+          </li>
 
-          Call("latestData", compact(render(data)) /* JSON */)
-        })
-      </pre-->
-      <!--pre>
-        object UserApi extends RestHelper {
-          object UserById {
-            def unapply(id: String): Option[User] = {
-              User.findById(id)
-            }
-          }
+          <li class="ajax">
+            <pre>
+              var username = ""
+              var password = ""
+              var email = ""
 
-          serve {
-            case "users" :: UserById(user) :: Nil JsonGet _ =>
-              decompose(user)
-            case "users" :: _ JsonGet _ =>
-              "error"   -> "User not found." ~
-              "details" -> "The user id you requested does not exist."
-          }
-        }
-      </pre-->
+              makeFormsAjax andThen
+              "#username"   #> text(username, username = _) &
+              "#password"   #> text(password, password = _) &
+              "#email"      #> text(email, email = _) &
+              "type=submit" #> ajaxOnSubmit({ s: String =>
+                User(username, password, email).save
+
+                RedirectTo("/home")
+              })
+            </pre>
+
+            <h3><a href="#ajax">The AJAX-ready Scala web framework</a></h3>
+          </li>
+
+          <li class="ajax">
+            <pre>
+&lt;button id="refresh-data"&gt;Refresh Data&lt;/button&gt;
+
+"#refresh-data" #> ajaxInvoke({
+  val data: List[Data] = Data.getLatest
+
+  Call("latestData", compact(render(data)) /* JSON */)
+})
+            </pre>
+
+            <h3><a href="#ajax">The AJAX-ready Scala web framework</a></h3>
+          </li>
+
+          <li class="rest">
+            <pre>
+object UserApi extends RestHelper {
+  object UserById {
+    def unapply(id: String): Option[User] = {
+      User.findById(id)
+    }
+  }
+
+  serve {
+    case "users" :: UserById(user) :: Nil JsonGet _ =>
+      decompose(user)
+    case "users" :: _ JsonGet _ =>
+      "error"   -> "User not found." ~
+      "details" -> "The user id you requested does not exist."
+  }
+}
+            </pre>
+
+            <h3><a href="#rest">The RESTful Scala web framework</a></h3>
+          </li>
+
+          <li class="real-time">
+            <pre>
+class OnlineComet {
+  private var onlineUsers: List[User] = Nil
+
+  def render = {
+    "#online-count" #> onlineUsers.length &
+    "#online-users li" #> onlineUsers.map { user =>
+      ".name" #> user.name
+    }
+  }
+
+  override def messageHandler = {
+    case UserLoggedIn(user) =>
+      onlineUsers ::= user
+      reRender()
+  }
+}
+            </pre>
+
+            <h3><a href="#real-time">The real-time Scala web framework</a></h3>
+          </li>
+        </ul>
+      </nav>
+
+      <!--a href="#get-started">Get Started</a-->
+    </section>
+
+    <section id="features">
+      <nav>
+        <ul>
+          <li><a href="#user-centric">User-centric development</li>
+          <li><a href="#ajax">Incredibly simple AJAX support</li>
+          <li><a href="#real-time">Best-in-class real-time capabilities</li>
+          <li><a href="#security">Effortless security</li>
+        </ul>
+        </nav>
     </section>
 
     <section id="user-centric">
