@@ -163,8 +163,8 @@
       #teasers li.current {
         left: 0;
       }
-      #teasers li.current > h3 {
-        background: 
+      #teasers li.current > h3, #teasers li.ajax.current + li.ajax > h3, #teasers li.user-centric.current + li.user-centric > h3 {
+        background:
           -webkit-linear-gradient(0deg, white, rgba(255,255,255,0) 40px, rgba(255,255,255,0) 760px, white),
           -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.1) 8%, white 8%, white 92%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0));
       }
@@ -199,6 +199,27 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="//use.typekit.net/lub6neu.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        setInterval(function() {
+          var $currentTeaser = $('li.current');
+
+          if ($currentTeaser.is(':last-child')) {
+            $currentTeaser
+              .removeClass('current')
+              .parent()
+              .find('li:first-child')
+                .addClass('current')
+          } else {
+            $currentTeaser
+              .removeClass('current')
+              .next()
+              .addClass('current');
+          }
+        }, 5000)
+      })
+    </script>
   </head>
 
   <body>
@@ -278,19 +299,19 @@ val article: Box[Article] = menu.currentValue
 
           <li class="ajax">
             <pre>
-              var username = ""
-              var password = ""
-              var email = ""
+var username = ""
+var password = ""
+var email = ""
 
-              makeFormsAjax andThen
-              "#username"   #> text(username, username = _) &
-              "#password"   #> text(password, password = _) &
-              "#email"      #> text(email, email = _) &
-              "type=submit" #> ajaxOnSubmit({ s: String =>
-                User(username, password, email).save
+makeFormsAjax andThen
+"#username"   #> text(username, username = _) &
+"#password"   #> text(password, password = _) &
+"#email"      #> text(email, email = _) &
+"type=submit" #> ajaxOnSubmit({ s: String =>
+  User(username, password, email).save
 
-                RedirectTo("/home")
-              })
+  RedirectTo("/home")
+})
             </pre>
 
             <h3><a href="#ajax">The AJAX-ready Scala web framework</a></h3>
