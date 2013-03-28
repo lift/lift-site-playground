@@ -160,13 +160,15 @@
         width: 800px;
         left: -780px;
       }
+      #teasers li > pre {
+        opacity: 0;
+        -webkit-transition: 300ms all;
+      }
       #teasers li.current {
         left: 0;
       }
-      #teasers li.current > h3, #teasers li.ajax.current + li.ajax > h3, #teasers li.user-centric.current + li.user-centric > h3 {
-        background:
-          -webkit-linear-gradient(0deg, white, rgba(255,255,255,0) 40px, rgba(255,255,255,0) 760px, white),
-          -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.1) 8%, white 8%, white 92%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0));
+      #teasers li.current > pre, #teasers li.current + li > pre {
+        opacity: 1;
       }
       #teasers li.current ~ li {
         left: 780px;
@@ -176,8 +178,9 @@
         -webkit-transition: 300ms all;
         position: absolute;
         width: 800px;
+        left: 0;
       }
-      #teasers li.ajax.current > h3, #teasers li.user-centric.current > h3 {
+      #teasers li.ajax.visible > h3, #teasers li.user-centric.visible > h3 {
         display: none;
       }
       #teasers li.ajax + li.ajax > h3, #teasers li.user-centric + li.user-centric > h3 {
@@ -188,11 +191,30 @@
         left: -780px;
       }
 
+      #teasers h3 {
+        position: relative;
+        z-index: 1;
+      }
+
       #features {
         padding-top: 20px;
       }
       #features ul {
         margin: 0;
+      }
+
+      #features:before {
+        content: '';
+        background:
+          -webkit-linear-gradient(0deg, white, rgba(255,255,255,0) 40px, rgba(255,255,255,0) 760px, white),
+          -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.1) 8%, white 8%, white 92%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0));
+
+        position: relative;
+        display: block;
+        height: 140px;
+        margin-top: -151px;
+
+        z-index: 0;
       }
     </style>
 
@@ -210,14 +232,17 @@
               .removeClass('current')
               .parent()
               .find('li:first-child')
-                .addClass('current')
+                .addClass('current visible')
           } else {
             $currentTeaser
               .removeClass('current')
               .next()
-              .addClass('current');
+              .addClass('current visible');
           }
-        }, 5000)
+
+          setTimeout(function() { $currentTeaser.removeClass('visible'); }, 300);
+        }, 5000);
+        val
       })
     </script>
   </head>
@@ -378,7 +403,13 @@ class OnlineComet {
         </ul>
       </nav>
 
-      <!--a href="#get-started">Get Started</a-->
+      <div id="actions">
+      <!-- container for get started/download; container gets
+      shadows for h3s, then gets pulled up into area h3s
+      currently take up. Layer h3 over it without layering pre over it. >
+        <a href="/download">Download</a>
+        <a href="#get-started">Get Started</a-->
+      </div>
     </section>
 
     <section id="features">
