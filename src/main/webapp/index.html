@@ -1,222 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link src="/stylesheets/home.css" rel="stylesheet">
+    <link href="/stylesheets/landing.css" rel="stylesheet" type="text/css">
     <title>Lift: The innovative, secure Scala web framework</title>
 
     <link href='http://fonts.googleapis.com/css?family=Oxygen:300' rel='stylesheet' type='text/css'>
-
-    <style>
-      html, body {
-        min-height: 100%;
-
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        width: 800px;
-        margin: 0 auto;
-
-        background: white;
-
-        padding: 0 20px 50px;
-
-        font-family: Oxygen, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      }
-
-      header:before {
-        content: '';
-
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 56px;
-
-        background: #1A336A;
-      }
-      header > * {
-        position: relative;
-      }
-
-      h1 {
-        text-indent: -1000px;
-        margin: 0;
-      }
-      header > h1 {
-        width: 143px;
-        height: 56px;
-
-        background: url('/images/logo.png');
-      }
-      #introduction > h1 {
-        height: 113px;
-
-        margin-top: 100px;
-        margin-bottom: 100px;
-        background: url('/images/logo-large.png') 50% no-repeat;
-      }
-
-      #main-nav {
-        float: right;
-
-        height: 56px;
-        margin-top: -56px;
-      }
-      #main-nav > ul {
-        list-style-type: none;
-        margin: 0
-      }
-      #main-nav > ul > li, #main-nav a {
-        float: left;
-      }
-      #main-nav a {
-        font-family: ratio;
-        font-weight: 300;
-        text-transform: uppercase;
-        height: 56px;
-        line-height: 52px;
-
-        color: white;
-        text-decoration: none;
-
-        padding: 0 20px;
-        margin-left: 1px;
-
-        background: #4661B0;
-
-        border: 2px #4661B0;
-      }
-      #main-nav a:hover {
-        background: #6D83C5;
-      }
-      #main-nav a.current {
-        background: white;
-        color: black;
-        font-weight: 400;
-      }
-
-      pre, code {
-        font-family: inconsolata, Monaco, 'Source Code Pro', 'Droid Sans Mono', 'Ubuntu Mono', Consolas,
-                     'Liberation Mono', Menlo, 'Bitstream Vera Sans Mono', 'Courier Std', 'Courier New', Courier,
-                     monospace;
-      }
-
-      #teasers {
-        overflow: hidden;
-        height: 660px;
-
-        margin-bottom: -15px;
-      }
-      #teasers > ul {
-        margin: 75px 0 0;
-        padding: 0 80px;
-
-        list-style-type: none;
-      }
-      #teasers h3 {
-        font-family: ratio, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 300;
-        font-size: 42px;
-        text-rendering: optimizelegibility;
-        text-align: center;
-
-        margin: -15px 0 0;
-        padding: 47px 0;
-      }
-      #teasers h3 > a {
-        text-decoration: none;
-        color: black;
-      }
-      #teasers li > a {
-        display: none;
-      }
-      #teasers pre {
-        font-size: 16px;
-
-        background: url('/images/macbook-pro-vico.png');
-        border-top-left-radius: 25px; /* match mbp corners */
-        border-top-right-radius: 25px;
-        box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
-
-        box-sizing: border-box;
-
-        width: 720px;
-        height: 450px;
-
-        margin: 0 40px;
-        padding: 93px 112px 0;
-      }
-
-      #teasers {
-        position: relative;
-      }
-
-      #teasers li {
-        -webkit-transition: 300ms all;
-
-        position: absolute;
-
-        width: 800px;
-        left: -780px;
-      }
-      #teasers li > pre {
-        opacity: 0;
-        -webkit-transition: 300ms all;
-      }
-      #teasers li.current {
-        left: 0;
-      }
-      #teasers li.current > pre, #teasers li.current + li > pre {
-        opacity: 1;
-      }
-      #teasers li.current ~ li {
-        left: 780px;
-      }
-
-      #teasers li.ajax > h3, #teasers li.user-centric > h3 {
-        -webkit-transition: 300ms all;
-        position: absolute;
-        width: 800px;
-        left: 0;
-      }
-      #teasers li.ajax.visible > h3, #teasers li.user-centric.visible > h3 {
-        display: none;
-      }
-      #teasers li.ajax + li.ajax > h3, #teasers li.user-centric + li.user-centric > h3 {
-        display: block;
-      }
-      #teasers li.ajax.current + li.ajax > h3, #teasers li.ajax + li.ajax.current > pre,
-          #teasers li.user-centric.current + li.user-centric > h3, #teasers li.user-centric + li.user-centric.current > pre {
-        left: -780px;
-      }
-
-      #teasers h3 {
-        position: relative;
-        z-index: 1;
-      }
-
-      #features {
-        padding-top: 20px;
-      }
-      #features ul {
-        margin: 0;
-      }
-
-      #features:before {
-        content: '';
-        background:
-          -webkit-linear-gradient(0deg, white, rgba(255,255,255,0) 40px, rgba(255,255,255,0) 760px, white),
-          -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.1) 8%, white 8%, white 92%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0));
-
-        position: relative;
-        display: block;
-        height: 140px;
-        margin-top: -151px;
-
-        z-index: 0;
-      }
-    </style>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="//use.typekit.net/lub6neu.js"></script>
@@ -253,8 +41,8 @@
 
       <nav id="main-nav">
         <ul>
-          <li><a href="/download">Download</a></li>
           <li><a href="/documentation">Learn</a></li>
+          <li><a href="/download">Download</a></li>
           <li><a href="/contribute">Contribute</a></li>
         </ul>
       </nav>
@@ -403,24 +191,11 @@ class OnlineComet {
         </ul>
       </nav>
 
-      <div id="actions">
-      <!-- container for get started/download; container gets
-      shadows for h3s, then gets pulled up into area h3s
-      currently take up. Layer h3 over it without layering pre over it. >
-        <a href="/download">Download</a>
-        <a href="#get-started">Get Started</a-->
-      </div>
-    </section>
-
-    <section id="features">
-      <nav>
-        <ul>
-          <li><a href="#user-centric">User-centric development</li>
-          <li><a href="#ajax">Incredibly simple AJAX support</li>
-          <li><a href="#real-time">Best-in-class real-time capabilities</li>
-          <li><a href="#security">Effortless security</li>
-        </ul>
-        </nav>
+      <ul id="actions">
+        <li><a class="learn" href="/documentation">Learn</a></li>
+        <li><a class="download" href="/download">Download</a></li>
+        <li><a class="get-started" href="#get-started">Get Started</a></li>
+      </ul>
     </section>
 
     <section id="user-centric">

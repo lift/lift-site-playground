@@ -1,0 +1,298 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('/stylesheets/fonts/fontawesome-webfont.eot?v=3.0.1');
+  src: url('/stylesheets/fonts/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('/stylesheets/fonts/fontawesome-webfont.woff?v=3.0.1') format('woff'),
+    url('/stylesheets/fonts/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  min-height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 800px;
+  margin: 0 auto;
+
+  background: white;
+
+  padding: 0 20px 50px;
+
+  font-family: Oxygen, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+header:before {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 56px;
+
+  background: #1A336A;
+}
+header > * {
+  position: relative;
+}
+
+h1 {
+  text-indent: -1000px;
+  margin: 0;
+}
+header > h1 {
+  width: 143px;
+  height: 56px;
+
+  background: url('/images/logo.png');
+}
+#introduction {
+  overflow: hidden; /* clearfix */
+}
+#introduction > h1 {
+  height: 113px;
+
+  margin-top: 100px;
+  margin-bottom: 100px;
+  background: url('/images/logo-large.png') 50% no-repeat;
+}
+
+#main-nav {
+  float: right;
+
+  height: 56px;
+  margin-top: -56px;
+}
+#main-nav > ul {
+  list-style-type: none;
+  margin: 0
+}
+#main-nav > ul > li, #main-nav a {
+  float: left;
+}
+#main-nav, h3, #actions {
+  font-family: ratio, Oxygen, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+#main-nav a {
+  text-transform: uppercase;
+  height: 56px;
+  line-height: 52px;
+
+  color: white;
+  text-decoration: none;
+
+  padding: 0 20px;
+  margin-left: 1px;
+
+  background: #4661B0;
+
+  border: 2px #4661B0;
+}
+#main-nav a:hover {
+  background: #6D83C5;
+}
+#main-nav a.current {
+  background: white;
+  color: black;
+  font-weight: 400;
+}
+
+pre, code {
+  font-family: inconsolata, Monaco, 'Source Code Pro', 'Droid Sans Mono', 'Ubuntu Mono', Consolas,
+               'Liberation Mono', Menlo, 'Bitstream Vera Sans Mono', 'Courier Std', 'Courier New', Courier,
+               monospace;
+}
+
+#teasers {
+  overflow: hidden;
+  height: 660px;
+
+  margin-bottom: -15px;
+}
+#teasers > ul {
+  margin: 75px 0 0;
+  padding: 0 80px;
+
+  list-style-type: none;
+}
+#teasers h3 {
+  font-family: ratio, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 42px;
+  text-rendering: optimizelegibility;
+  text-align: center;
+
+  margin: -15px 0 0;
+  padding: 47px 0;
+}
+#teasers h3 > a {
+  text-decoration: none;
+  color: black;
+}
+#teasers li > a {
+  display: none;
+}
+#teasers pre {
+  font-size: 16px;
+
+  background: url('/images/macbook-pro-vico.png');
+  border-top-left-radius: 25px; /* match mbp corners */
+  border-top-right-radius: 25px;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
+
+  box-sizing: border-box;
+
+  width: 720px;
+  height: 450px;
+
+  margin: 0 40px;
+  padding: 93px 112px 0;
+}
+
+#teasers {
+  position: relative;
+}
+
+#teasers li {
+  -webkit-transition: 300ms all;
+
+  position: absolute;
+
+  width: 800px;
+  left: -780px;
+}
+#teasers li > pre {
+  opacity: 0;
+  -webkit-transition: 300ms all;
+}
+#teasers li.current {
+  left: 0;
+}
+#teasers li.current > pre, #teasers li.current + li > pre {
+  opacity: 1;
+}
+#teasers li.current ~ li {
+  left: 780px;
+}
+
+#teasers li.ajax > h3, #teasers li.user-centric > h3 {
+  -webkit-transition: 300ms all;
+  position: absolute;
+  width: 800px;
+  left: 0;
+}
+#teasers li.ajax.visible > h3, #teasers li.user-centric.visible > h3 {
+  display: none;
+}
+#teasers li.ajax + li.ajax > h3, #teasers li.user-centric + li.user-centric > h3 {
+  display: block;
+}
+#teasers li.ajax.current + li.ajax > h3, #teasers li.ajax + li.ajax.current > pre,
+    #teasers li.user-centric.current + li.user-centric > h3, #teasers li.user-centric + li.user-centric.current > pre {
+  left: -780px;
+}
+
+#teasers h3 {
+  position: relative;
+  z-index: 1;
+}
+
+#features {
+  padding-top: 20px;
+}
+#features ul {
+  margin: 0;
+}
+
+#actions {
+  margin: 0;
+  padding: 0;
+
+  height: 200px;
+
+  list-style-type: none;
+}
+/*
+ * We're using this element to provide a fixed background for the h3s in
+ * the #features element that doesn't have to respect the overflow:
+ * hidden rules that the #features element needs for its effects.
+ */
+#actions:before {
+  content: '';
+  background:
+    -webkit-linear-gradient(0deg, white, rgba(255,255,255,0) 40px, rgba(255,255,255,0) 760px, white),
+    -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.1) 8%, white 8%, white 92%, rgba(0,0,0,0.1) 92%, rgba(0,0,0,0));
+
+  position: relative;
+  display: block;
+  height: 140px;
+  margin: -146px 0 0;
+
+  z-index: 0;
+}
+
+#actions > li > a {
+  float: left;
+
+  width: 33%;
+
+  text-align: center;
+
+  margin-top: 10px;
+  padding-bottom: 90px;
+  font-size: 32px;
+
+  color: black;
+  text-decoration: none;
+
+  -webkit-transition: 600ms color, 600ms text-shadow;
+
+  text-shadow: 0 0 0 black;
+}
+#actions > li > a:hover {
+  color: #4661B0;
+  text-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+#actions > li > a:before {
+  font-family: 'FontAwesome';
+
+  margin-top: 90px;
+  display: block;
+
+  font-size: 48px;
+}
+#actions li > a.learn:before {
+  content: '';
+}
+#actions li > a.download:before {
+  content: '';
+}
+#actions li > a.get-started:before {
+  content: '';
+}
+
+#user-centric, #ajax, #real-time, #security {
+  margin-left: -1000px;
+  margin-right: -1000px;
+
+  color: white;
+
+  padding: 100px 0;
+}
+#user-centric > h3, #user-centric > ul, #ajax > h3, #ajax > ul,
+    #real-time > h3, #real-time > ul,
+    #security > h3, #security > ul, #security > p {
+  margin: 0 auto;
+  width: 800px;
+}
+#user-centric, #real-time {
+  background: #1A336A;
+}
+#ajax, #security {
+  background: #4661B0;
+}
