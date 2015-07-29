@@ -1,38 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="/stylesheets/landing.css" rel="stylesheet" type="text/css">
-    <title>Lift: The innovative, secure Scala web framework</title>
+    <title>Lift: Your Next Favorite Framework</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Oxygen:300' rel='stylesheet' type='text/css'>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="//use.typekit.net/lub6neu.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-
-    <script type="text/javascript">
-      $(document).ready(function() {
-        setInterval(function() {
-          var $currentTeaser = $('li.current');
-
-          if ($currentTeaser.is(':last-child')) {
-            $currentTeaser
-              .removeClass('current')
-              .parent()
-              .find('li:first-child')
-                .addClass('current visible')
-          } else {
-            $currentTeaser
-              .removeClass('current')
-              .next()
-              .addClass('current visible');
-          }
-
-          setTimeout(function() { $currentTeaser.removeClass('visible'); }, 300);
-        }, 5000);
-        val
-      })
-    </script>
+    <link href="/stylesheets/landing.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=OpenSans:400,600" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   </head>
 
   <body>
@@ -41,208 +14,144 @@
 
       <nav id="main-nav">
         <ul>
-          <li><a href="/documentation">Learn</a></li>
-          <li><a href="/download">Download</a></li>
-          <li><a href="/contribute">Contribute</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/announcements/">News</a></li>
+          <li><a href="/downloads/">Download</a></li>
+          <li><a href="/documentation/">Documentation</a></li>
+          <li><a href="/contributing">Contributing</a></li>
+          <li id="github"><a href="https://github.com/lift/framework">Github</a></li>
         </ul>
       </nav>
+
+      <h2>Your Next Favorite Framework</h2>
+      <h3>Secure by default. Silky smooth from tiny to huge apps.</h3>
+
+      <ul class="introductory-links">
+        <li>
+          <a href="/getting-started" class="getting-started">Get Started</a>
+        </li>
+        <li>
+          <a href="/documentation/" class="documentation">Documentation</a>
+        </li>
+      </ul>
     </header>
 
-    <section id="introduction">
-      <nav id="teasers">
+    <section id="secure">
+      <h4>Secure</h4>
+
+      <p>
+        Worry less about security: Lift is resistant to CSRF and replay
+        attacks out of the box, and escapes all HTML by default making
+        script injection a risk you have to make explicit.
+      </p>
+
+      <a href="/documentation/security-guide">Read More</a>
+    </section>
+
+    <section id="comet-ajax">
+      <h4>Comet &amp; AJAX</h4>
+
+      <p>
+        Build real-time and async apps effortlessly: Lift uses actors
+        to manage real-time push, and provides simple AJAX forms and
+        callbacks with a few lines of code.
+      </p>
+
+      <a href="/documentation/intro-to-comet-and-ajax">Read More</a>
+    </section>
+
+    <section id="view-first">
+      <h4>View First</h4>
+
+      <p>
+        Build your application the way it will be used: Lift starts with
+        the pages your users see, and builds the application around
+        that.
+      </p>
+
+      <a href="/documentation/intro-to-view-first">Read More</a>
+    </section>
+
+    <section id="scalable">
+      <h4>Scalable</h4>
+
+      <p>
+        Start with fast, easily understood transformations and callback,
+        then judiciously optimize hotspots by using expressive REST
+        endpoints, embedded HTML, and statelessness.
+      </p>
+
+      <a href="/documentation/scaling-lift-apps">Read More</a>
+    </section>
+
+    <section id="testimonials">
+      <h4>Who Uses Lift?</h4>
+
+      <p>
+        Lift feels just as great in tiny sites and large, complex
+        applications. Here are a few of the folks using Lift
+        successfully.
+      </p>
+
+      <img class="logo" src="/images/logos/foursquare.png" alt="FourSquare logo">
+
+      <blockquote>
+        The ease of developing complex interactive ajax web pages
+        enabled a very rapid port from our previous platform.
+        <p class="author">
+          <a href="https://twitter.com/harryh">@harryh</a>, FourSquare engineering lead
+        </p>
+      </blockquote>
+
+      <ul class="logos">
+        <li>
+          <a href="http://novell.com">
+            <img class="logo" src="/images/logos/novell.png" alt="Novell logo">
+          </a>
+        </li>
+        <li>
+          <a href="http://sketchboard.io">
+            <img class="logo" src="/images/logos/sketchboard.png" alt="Sketchboard.io logo">
+          </a>
+        </li>
+        <li>
+          <a href="http://www.theguardian.com">
+            <img class="logo" src="/images/logos/the-guardian.png" alt="The Guardian logo">
+          </a>
+        </li>
+        <li>
+          <a href="http://www.innovationgames.com">
+            <img class="logo" src="/images/logos/innovation-games.png" alt="Innovation Games logo">
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <a class="download" href="/downloads">Download</a>
+
+      <div id="framework-links">
+        <h5>Framework</h5>
+
         <ul>
-          <li class="current security">
-            <pre>
-case class Article(id: Long, title: String, body: String)
-val menu =
-  Menu.param[Article](
-    "article", LinkText(_.title),
-    parser = (articleId) => Article.findById(articleId),
-    encoder = (article) => article.id
-  ) / "articles" / "article" >>
-    If(loggedIn_? _, failMsg = S.redirectTo("/"))
-
-val article: Box[Article] = menu.currentValue
-            </pre>
-
-            <h3><a href="#security">The effortlessly secure Scala web framework</a></h3>
-
-            <a href="#security">Learn more about security in Lift</a>
-          </li>
-
-          <li class="user-centric">
-            <pre>
-&lt;div data-lift="lazy"&gt;
-  Results from Google search:
-
-  &lt;ul data-lift="GoogleSearch.results"&gt;
-    &lt;li&gt;
-      &lt;h5&gt;Result Title:&lt;/h5&gt;
-      &lt;p&gt;Result content...&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
-            </pre>
-
-            <h3><a href="#user-centric">The user-centric Scala web framework</a></h3>
-
-            <a href="#user-centric">Read more about view-first development in Lift</a>
-          </li>
-          <li class="user-centric">
-            <pre>
-&lt;form data-lift="User.signupForm"&gt;
-  &lt;ul&gt;
-    &lt;li&gt;
-      &lt;label for="username"&gt;Username:&lt;/label&gt;
-      &lt;input id="username"&gt;
-    &lt;li&gt;
-      &lt;label for="password"&gt;Password:&lt;/label&gt;
-      &lt;input id="password"&gt;
-    &lt;li&gt;
-      &lt;label for="email"&gt;Email:&lt;/label&gt;
-      &lt;input id="email"&gt;
-    &lt;li class="submit"&gt;
-      &lt;button type="submit"&gt;Sign Up&lt;/button&gt;
-  &lt;/ul&gt;
-&lt;/form&gt;
-            </pre>
-
-            <h3><a href="#user-centric">The user-centric Scala web framework</a></h3>
-          </li>
-
-          <li class="ajax">
-            <pre>
-var username = ""
-var password = ""
-var email = ""
-
-makeFormsAjax andThen
-"#username"   #> text(username, username = _) &
-"#password"   #> text(password, password = _) &
-"#email"      #> text(email, email = _) &
-"type=submit" #> ajaxOnSubmit({ s: String =>
-  User(username, password, email).save
-
-  RedirectTo("/home")
-})
-            </pre>
-
-            <h3><a href="#ajax">The AJAX-ready Scala web framework</a></h3>
-          </li>
-
-          <li class="ajax">
-            <pre>
-&lt;button id="refresh-data"&gt;Refresh Data&lt;/button&gt;
-
-"#refresh-data" #> ajaxInvoke({
-  val data: List[Data] = Data.getLatest
-
-  Call("latestData", compact(render(data)) /* JSON */)
-})
-            </pre>
-
-            <h3><a href="#ajax">The AJAX-ready Scala web framework</a></h3>
-          </li>
-
-          <li class="rest">
-            <pre>
-object UserApi extends RestHelper {
-  object UserById {
-    def unapply(id: String): Option[User] = {
-      User.findById(id)
-    }
-  }
-
-  serve {
-    case "users" :: UserById(user) :: Nil JsonGet _ =>
-      decompose(user)
-    case "users" :: _ JsonGet _ =>
-      "error"   -> "User not found." ~
-      "details" -> "The user id you requested does not exist."
-  }
-}
-            </pre>
-
-            <h3><a href="#rest">The RESTful Scala web framework</a></h3>
-          </li>
-
-          <li class="real-time">
-            <pre>
-class OnlineComet {
-  private var onlineUsers: List[User] = Nil
-
-  def render = {
-    "#online-count" #> onlineUsers.length &
-    "#online-users li" #> onlineUsers.map { user =>
-      ".name" #> user.name
-    }
-  }
-
-  override def messageHandler = {
-    case UserLoggedIn(user) =>
-      onlineUsers ::= user
-      reRender()
-  }
-}
-            </pre>
-
-            <h3><a href="#real-time">The real-time Scala web framework</a></h3>
-          </li>
+          <li><a href="/documentation/getting-started">Getting Started</a></li>
+          <li><a href="/documentation/api/">API Documentation</a></li>
+          <li><a href="/downloads/">Downloads</a></li>
+          <li><a href="/community">Community</a></li>
+          <li><a href="/about">About</a></li>
         </ul>
-      </nav>
+      </div>
 
-      <ul id="actions">
-        <li><a class="learn" href="/documentation">Learn</a></li>
-        <li><a class="download" href="/download">Download</a></li>
-        <li><a class="get-started" href="#get-started">Get Started</a></li>
-      </ul>
-    </section>
+      <div id="contribute-links">
+        <h5>Contribute</h5>
 
-    <section id="user-centric">
-      <h3>Let your users guide your development by building your views first and separating the backend completely</h3>
-
-      <ul>
-        <li>Build your views first after a round of user-centric design: Frontend developers can build views without any backend knowledge</li>
-        <li>Treat your views as mockups when needed: all views can be valid HTML5 documents</li>
-        <li>Transform your views with real data: use CSS-like syntax to transform HTML mockups into real documents</li>
-      </ul>    </section>
-
-    <section id="ajax">
-      <h3>AJAX support so simple it'll make your head spin</h3>
-
-      <ul>
-        <li>Turn regular forms into AJAX forms with two changes</li>
-        <li>Load slow parts of a page after the page is sent to the user with a single change</li>
-        <li>Easily all back to the server on any event</li>
-      </ul>
-    </section>
-
-    <section id="real-time">
-      <h3>Reason about real-time applications without worrying about threading complexities</h3>
-
-      <ul>
-        <li>Send real-time updates as messages to actors</li>
-        <li>Put any number of real-time components on any page</li>
-        <li>Advanced connection management handles browser connection limits transparently</li>
-        <li>Uses server-side continuations to support thousands of connections without tying up threads unnecessarily</li>
-      </ul>
-    </section>
-
-    <section id="security">
-      <h3>Let Lift take care of some of the most common security problems on the web for you</h3>
-
-      <ul>
-        <li>Type-safe URLs let you fail URLs before broken data reaches your application</li>
-        <li>Trivial access control based on simple functions</li>
-        <li>No views or files are accessible unless you explicitly expose them</li>
-        <li>HTML is always escaped before reaching the user, so you never have to worry about script tag injection in Lift views<sup>*</sup></li>
-        <li>Opaque identifiers for form fields means resistance to replay and <abbr title="Cross-Site Request Forgery">CSRF</abbr> attacks</li>
-      </ul>
-
-      <p><sup>*</sup>&mdash;Note that scripts can also be injected via attributes. Always avoid binding user-specified data to event handling attributes.</p>
-    </section>
-
-    <section id="get-started">
-    </section>
+        <ul>
+          <li><a href="/contributing/setting-up">Setting Up</a></li>
+          <li><a href="https://github.com/lift/framework">Github</a></li>
+          <li><a href="/contributing/contribution-guidelines">Contribution Guidelines</a></li>
+          <li><a href="/announcements/lift-development-recap">Lift Development Recap</a></li>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>
